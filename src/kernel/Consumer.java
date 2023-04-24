@@ -9,19 +9,12 @@ import truck.Truck;
 
 public class Consumer implements Runnable{
 	
-	BlockingQueue<Truck> queue;
+	private BlockingQueue<Truck> queue;
 
-	Semaphore entryGateLane;
-	Semaphore exitGateLane;
-	Semaphore stackHandlingSlot;
-	
 	ExecutorService service = Executors.newCachedThreadPool();
 	
-	public Consumer(BlockingQueue<Truck> queue, Semaphore entryGateLane, Semaphore exitGateLane, Semaphore stackHandlingSlot){
+	public Consumer(BlockingQueue<Truck> queue){
 		this.queue = queue;
-		this.exitGateLane = exitGateLane;
-		this.entryGateLane = entryGateLane;
-		this.stackHandlingSlot = stackHandlingSlot;
 	}
 	
 	public void consume() throws InterruptedException{

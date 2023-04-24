@@ -19,7 +19,6 @@ public class Mainer{
 	
 	public static void main(String[] args) throws InterruptedException {
 		BlockingQueue<Truck> queue = new ArrayBlockingQueue<Truck>(15);
-		Map<Integer, Truck> truckMap = Collections.synchronizedMap(new HashMap<Integer, Truck>());
 		
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n================ APP INIT ================");
@@ -39,7 +38,7 @@ public class Mainer{
 		System.out.println("TYPE 'HELP' AND HIT ENTER TO SEE THE LIST OF AVAILABLE COMMANDS");
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 		executor.submit(new Producer(queue, entryGateLanes, exitGateLanes, stackHandlingSlots));
-		executor.submit(new Consumer(queue, entryGateLanes, exitGateLanes, stackHandlingSlots));
+		executor.submit(new Consumer(queue));
 		
 	}
 }
